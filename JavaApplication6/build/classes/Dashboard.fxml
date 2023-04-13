@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DashboardController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <BorderPane prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <top>
+                  <AnchorPane prefHeight="45.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="153.0" layoutY="-77.0" prefHeight="40.0" prefWidth="1100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Button fx:id="closebutton" layoutX="1058.0" layoutY="6.0" mnemonicParsing="false" onAction="#closebutton" style="-fx-background-color: transparent;" text="X">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Label layoutX="50.0" layoutY="11.0" text="City Light System" textFill="#36b3e4">
+                                 <font>
+                                    <Font name="Tahoma" size="14.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="26.0" fitWidth="38.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Image/home.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <left>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutY="144.0" prefHeight="555.0" prefWidth="200.0" style="-fx-background-color: #24a4d7;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <ImageView fitHeight="98.0" fitWidth="130.0" layoutX="51.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Image/user%20(2).png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="18.0" layoutY="150.0" text="Welcome">
+                                 <font>
+                                    <Font name="Tahoma" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="82.5" layoutX="109.0" layoutY="176.0" startX="-100.0" />
+                              <Button fx:id="homebutton" layoutX="8.0" layoutY="199.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="31.0" prefWidth="185.0" style="-fx-background-color: Transparent;" text="Home" textFill="#070707">
+                                 <font>
+                                    <Font name="Tahoma" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="addhousebutton" layoutX="8.0" layoutY="230.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="31.0" prefWidth="185.0" style="-fx-background-color: Transparent;" text="Add house" textFill="#070707">
+                                 <font>
+                                    <Font name="Tahoma" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="productionbutton" layoutX="8.0" layoutY="261.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="31.0" prefWidth="185.0" style="-fx-background-color: Transparent;" text="Production" textFill="#070707">
+                                 <font>
+                                    <Font name="Tahoma" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="consomationbutton" layoutX="8.0" layoutY="292.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="31.0" prefWidth="185.0" style="-fx-background-color: Transparent;" text="Consomation" textFill="#070707">
+                                 <font>
+                                    <Font name="Tahoma" size="14.0" />
+                                 </font>
+                              </Button>
+                              <ImageView fitHeight="26.0" fitWidth="38.0" layoutX="16.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Image/home.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="26.0" fitWidth="38.0" layoutX="16.0" layoutY="295.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Image/home.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="26.0" fitWidth="38.0" layoutX="16.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Image/home.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="26.0" fitWidth="38.0" layoutX="16.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Image/home.png" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="logoutbutton" layoutX="16.0" layoutY="507.0" mnemonicParsing="false" onAction="#logoutAdmin" style="-fx-background-color: Transparent;" text="Logout">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Label fx:id="username" layoutX="78.0" layoutY="150.0" text="Admin">
+                                 <font>
+                                    <Font name="Tahoma" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </left>
+               <center>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane fx:id="home_form" layoutX="210.0" layoutY="114.0" prefHeight="555.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="14.0" layoutY="12.0" prefHeight="532.0" prefWidth="875.0" styleClass="White-bg" stylesheets="@login.css" />
+                              <AnchorPane layoutX="14.0" layoutY="11.0" prefHeight="162.0" prefWidth="875.0" stylesheets="@login.css">
+                                 <children>
+                                    <AnchorPane fx:id="home_totaproduction" layoutX="581.0" layoutY="14.0" prefHeight="115.0" prefWidth="245.0" style="-fx-background-color: #1a6a8a;">
+                                       <children>
+                                          <ImageView fitHeight="40.0" fitWidth="59.0" layoutX="14.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@Image/home.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="67.0" layoutY="76.0" prefHeight="23.0" prefWidth="124.0" text="Total Production">
+                                             <font>
+                                                <Font name="Tahoma" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="TOP_RIGHT" layoutX="107.0" layoutY="14.0" prefHeight="23.0" prefWidth="124.0" text="0">
+                                             <font>
+                                                <Font name="Tahoma" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="home_totaconsomation" layoutX="309.0" layoutY="14.0" prefHeight="115.0" prefWidth="245.0" style="-fx-background-color: #1a6a8a;">
+                                       <children>
+                                          <ImageView fitHeight="40.0" fitWidth="59.0" layoutX="14.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@Image/home.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="68.0" layoutY="78.0" prefHeight="23.0" prefWidth="124.0" text="Total Consomation">
+                                             <font>
+                                                <Font name="Tahoma" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="TOP_RIGHT" layoutX="107.0" layoutY="14.0" prefHeight="23.0" prefWidth="124.0" text="0">
+                                             <font>
+                                                <Font name="Tahoma" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="home_totahouse" layoutX="37.0" layoutY="14.0" prefHeight="115.0" prefWidth="245.0" style="-fx-background-color: #1a6a8a;">
+                                       <children>
+                                          <ImageView fitHeight="40.0" fitWidth="59.0" layoutX="14.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@Image/home.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label layoutX="69.0" layoutY="78.0" prefHeight="23.0" prefWidth="124.0" text="Total Town Houses">
+                                             <font>
+                                                <Font name="Tahoma" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="TOP_RIGHT" layoutX="107.0" layoutY="14.0" prefHeight="23.0" prefWidth="124.0" text="0">
+                                             <font>
+                                                <Font name="Tahoma" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="White-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="addhouse_form" layoutX="57.0" layoutY="65.0" prefHeight="555.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="14.0" layoutY="12.0" prefHeight="528.0" prefWidth="875.0" stylesheets="@login.css">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="White-bg" />
+                                 </styleClass>
+                                 <children>
+                                    <Label layoutX="35.0" layoutY="343.0" text="House ID:">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addhouse_houseID" layoutX="116.0" layoutY="338.0" prefHeight="25.0" prefWidth="189.0" />
+                                    <Label layoutX="44.0" layoutY="384.0" text="Country:">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addhouse_country" layoutX="116.0" layoutY="378.0" prefHeight="25.0" prefWidth="189.0" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="60.0" layoutY="424.0" text="Town:">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addhouse_town" layoutX="116.0" layoutY="419.0" prefHeight="25.0" prefWidth="189.0" />
+                                    <Button fx:id="addhouse_clearbutton" layoutX="412.0" layoutY="457.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="83.0" style="-fx-background-color: #36b3e4;" text="Clear" />
+                                    <Button fx:id="addhouse_deletebutton" layoutX="564.0" layoutY="457.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="83.0" style="-fx-background-color: #36b3e4;" text="Delete" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="15.0" layoutY="13.0" prefHeight="301.0" prefWidth="874.0" stylesheets="@login.css">
+                                 <styleClass>
+                                    <String fx:value="White-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <TableView fx:id="addhouse_tableView" layoutX="19.0" layoutY="62.0" prefHeight="213.0" prefWidth="837.0">
+                                      <columns>
+                                        <TableColumn fx:id="addhouse_col_houseID" prefWidth="210.0" text="House ID" />
+                                        <TableColumn fx:id="addhouse_col_town" prefWidth="301.0" text="Town" />
+                                          <TableColumn fx:id="addhouse_col_address" prefWidth="325.0" text="Address" />
+                                      </columns>
+                                    </TableView>
+                                    <TextField fx:id="addhouse_search" layoutX="19.0" layoutY="22.0" prefHeight="25.0" prefWidth="261.0" promptText="Search" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="production_form" layoutX="26.0" layoutY="78.0" prefHeight="555.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="8.0" layoutY="13.0" prefHeight="529.0" prefWidth="247.0" stylesheets="@login.css">
+                                 <styleClass>
+                                    <String fx:value="White-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <TextField fx:id="Production_houseID" layoutX="35.0" layoutY="47.0" prefHeight="25.0" prefWidth="168.0" promptText="House ID" />
+                                    <TextField fx:id="Production_monthly" layoutX="35.0" layoutY="258.0" prefHeight="25.0" prefWidth="175.0" promptText="Monthly Production" />
+                                    <Label layoutX="35.0" layoutY="104.0" text="Town     :">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="35.0" layoutY="136.0" text="Address :">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="Production_daily" layoutX="35.0" layoutY="196.0" prefHeight="25.0" prefWidth="174.0" promptText="Daily Production" />
+                                    <Label fx:id="Production_town" layoutX="122.0" layoutY="104.0" text="Label">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="Production_address" layoutX="122.0" layoutY="136.0" text="Label">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="Production_updatebutton" layoutX="130.0" layoutY="309.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="73.0" style="-fx-background-color: #36b3e4;" text="Update">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="13.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="Production_clearbutton" layoutX="35.0" layoutY="309.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="73.0" style="-fx-background-color: #36b3e4;" text="Clear">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="13.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="278.0" layoutY="13.0" prefHeight="529.0" prefWidth="615.0" stylesheets="@login.css">
+                                 <styleClass>
+                                    <String fx:value="White-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <TableView fx:id="Productiion_tableView" layoutX="6.0" layoutY="4.0" prefHeight="519.0" prefWidth="605.0">
+                                      <columns>
+                                        <TableColumn fx:id="Production_col_houseID" prefWidth="104.0" text="House ID" />
+                                        <TableColumn fx:id="Production_col_town" prefWidth="134.0" text="Town" />
+                                          <TableColumn fx:id="Production_col_address" prefWidth="110.0" text="Address" />
+                                          <TableColumn fx:id="Production_col_dailyprod" prefWidth="125.0" text="Daily Production" />
+                                          <TableColumn fx:id="Production_col_monthlyprod" prefWidth="131.0" text="Monthly Production" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="consomation_form" layoutX="10.0" layoutY="10.0" prefHeight="555.0" prefWidth="900.0" visible="false">
+                           <children>
+                              <AnchorPane layoutX="8.0" layoutY="13.0" prefHeight="529.0" prefWidth="247.0" stylesheets="@login.css">
+                                 <styleClass>
+                                    <String fx:value="White-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <TextField fx:id="Consomation_houseID" layoutX="35.0" layoutY="47.0" prefHeight="25.0" prefWidth="168.0" promptText="House ID" />
+                                    <TextField fx:id="Consomation_monthly" layoutX="35.0" layoutY="258.0" prefHeight="25.0" prefWidth="175.0" promptText="Monthly Consomation" />
+                                    <Label layoutX="35.0" layoutY="104.0" text="Town     :">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="35.0" layoutY="136.0" text="Address :">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="Consomation_daily" layoutX="35.0" layoutY="196.0" prefHeight="25.0" prefWidth="174.0" promptText="Daily Consomation" />
+                                    <Label fx:id="Concomation_town" layoutX="122.0" layoutY="104.0" text="Label">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="Consomation_address" layoutX="122.0" layoutY="136.0" text="Label">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="Consomation_updatebutton" layoutX="130.0" layoutY="309.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="73.0" style="-fx-background-color: #36b3e4;" text="Update">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="13.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="Consomation_clearbutton" layoutX="35.0" layoutY="309.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="73.0" style="-fx-background-color: #36b3e4;" text="Clear">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="13.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="278.0" layoutY="13.0" prefHeight="529.0" prefWidth="615.0" stylesheets="@login.css">
+                                 <styleClass>
+                                    <String fx:value="White-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <TableView fx:id="Consomation_tableview" layoutX="6.0" layoutY="4.0" prefHeight="519.0" prefWidth="605.0">
+                                       <columns>
+                                          <TableColumn fx:id="Consomation_col_houseID" prefWidth="104.0" text="House ID" />
+                                          <TableColumn fx:id="Consomation_col_town" prefWidth="134.0" text="Town" />
+                                          <TableColumn fx:id="Consomation_col_adrress" prefWidth="100.0" text="Address" />
+                                          <TableColumn fx:id="Consomation_col_dailycons" prefWidth="135.0" text="Daily Consomation" />
+                                          <TableColumn fx:id="Consomation_col_monthlycons" prefWidth="131.0" text="Monthly Consomation" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

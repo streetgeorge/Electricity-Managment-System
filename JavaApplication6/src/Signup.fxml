@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SignupController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <AnchorPane prefHeight="400.0" prefWidth="242.0" style="-fx-background-color: #42a4e1;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Image/group.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="67.0" layoutY="200.0" text="City Light">
+                     <font>
+                        <Font name="Tahoma Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="30.0" layoutY="239.0" text="Already have an Account?">
+                     <font>
+                        <Font name="Tahoma Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="signinbutton" layoutX="52.0" layoutY="272.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="117.0" style="-fx-background-color: transparent;" text="Sign-In!!" textFill="#0014f2" underline="true">
+                     <font>
+                        <Font name="Tahoma" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <Label layoutX="369.0" layoutY="27.0" text="Sign UP">
+               <font>
+                  <Font name="Tahoma Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="firstname" alignment="CENTER" layoutX="254.0" layoutY="70.0" onAction="#loginUser" prefHeight="29.0" prefWidth="334.0" promptText="First Name ">
+               <font>
+                  <Font name="Tahoma Bold" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="lastname" alignment="CENTER" layoutX="254.0" layoutY="114.0" onAction="#loginUser" prefHeight="29.0" prefWidth="334.0" promptText="Last Name">
+               <font>
+                  <Font name="Tahoma Bold" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="email" alignment="CENTER" layoutX="254.0" layoutY="160.0" onAction="#loginUser" prefHeight="29.0" prefWidth="334.0" promptText="Email">
+               <font>
+                  <Font name="Tahoma Bold" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="phone" alignment="CENTER" layoutX="254.0" layoutY="208.0" onAction="#loginUser" prefHeight="29.0" prefWidth="334.0" promptText="Phone +">
+               <font>
+                  <Font name="Tahoma Bold" size="12.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="password" alignment="CENTER" layoutX="254.0" layoutY="252.0" onAction="#loginUser" prefHeight="29.0" prefWidth="334.0" promptText="Password">
+               <font>
+                  <Font name="Tahoma Bold" size="14.0" />
+               </font>
+            </PasswordField>
+            <PasswordField fx:id="confirmpassword" alignment="CENTER" layoutX="254.0" layoutY="298.0" onAction="#loginUser" prefHeight="29.0" prefWidth="334.0" promptText="Confrim Password">
+               <font>
+                  <Font name="Tahoma Bold" size="14.0" />
+               </font>
+            </PasswordField>
+            <Button fx:id="Signupbutton" layoutX="303.0" layoutY="345.0" mnemonicParsing="false" onAction="#loginUser" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: #42a4e1;" text="Sign-Up">
+               <font>
+                  <Font name="Tahoma Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="closebutton" layoutX="560.0" layoutY="6.0" mnemonicParsing="false" onAction="#closebutton" style="-fx-background-color: transparent;" text="X">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

@@ -1,0 +1,17 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.White-bg {
+    -fx-background-color:#fff;
+    -fx-background-radius:8px;
+
+}
+
+.shadow{
+    -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0.5), 6,0,0,0);
+}
+.table-view{
+    -fx-bacground-color:transparent;
+    -fx-border-radius:8px;
+}
