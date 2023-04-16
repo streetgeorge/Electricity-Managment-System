@@ -30,6 +30,9 @@ public class LoginController implements Initializable {
 
     @FXML
     private AnchorPane main_form;
+    
+      @FXML
+    private Button Loginbutton1;
 
     @FXML
     private PasswordField password;
@@ -80,13 +83,87 @@ public class LoginController implements Initializable {
 
 // module to log as an admin also include so work and under progresse
 
+    public void LoginUser(){
+    
+        String sql ="SELECT * FROM users WHERE firstName = '" + username.getText()+"' And password = '"+ password.getText()+"'";
+            connect = database.connectDb();
+        
+        try{
+            
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+            
+            
+       
+        
+            if(username.getText().isEmpty() || password.getText().isEmpty()){
+            
+                alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please fill all the blanck");
+                alert.showAndWait();
+            
+            }else{
+                
+        // grante access to the dasboard as an admin
+        
+                if(result.next()){
+                
+                   
+                    
+                    
+                    alert=new Alert(AlertType.CONFIRMATION);
+                    
+                    alert.setTitle(" confimation Message");
+                    alert.setHeaderText(null);
+                    
+                    alert.setContentText("SUCCESSFULL LOGIN");
+                    alert.showAndWait();
+                    
+                    Loginbutton1.getScene().getWindow().hide();
+                    Parent root;
+                    
+                    root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
+                    Stage stage = new Stage();
+                    
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.show();
+                    
+                
+        // sentinelle to alert if when wrong password or username are entre or if one field it blanck
+        
+                }else{
+                    
+                    alert=new Alert(AlertType.ERROR);
+                    alert.setTitle("Error Message");
+                    
+                    alert.setHeaderText(null);
+                    alert.setContentText("Wrong username/password");
+                    
+                    alert.showAndWait();
+                
+                
+                }
+            
+            }
+            
+          
+        }catch(Exception e){e.printStackTrace();}
+    
+    
+    }
+    
     
     public void LoginAdmin(){
         
         // sql statement to compare the data store in the database and compare  them to the one entre when login 
         
         
-        String sql ="SELECT * FROM admin WHERE username = '" + username.getText()+"' And password = '"+ password.getText()+"'";
+            String sql ="SELECT * FROM admin WHERE username = '" + username.getText()+"' And password = '"+ password.getText()+"'";
             connect = database.connectDb();
         
         try{
@@ -111,7 +188,9 @@ public class LoginController implements Initializable {
         
                 if(result.next()){
                 
-                    getData.username = username.getText();
+                    
+                    
+                    
                     alert=new Alert(AlertType.CONFIRMATION);
                     
                     alert.setTitle(" confimation Message");
@@ -159,9 +238,7 @@ public class LoginController implements Initializable {
         
     }
 
-    public void closebutton(){
-        System.exit(0);
-}
+    public void closebutton(){System.exit(0);}
 
 
 

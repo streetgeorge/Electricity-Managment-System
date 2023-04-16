@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-// DO NOT TOUCHE DONT EVEN THINK OF IT  PERFECT AND IT NOT ME WHO CODE IT SO BETTE NOT TOUCHE xxxxxxxx OR YOU WILL GET 288 ERROR 
+
 
 public class CityLight extends Application {
         

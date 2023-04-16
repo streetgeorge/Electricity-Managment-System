@@ -44,12 +44,12 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </TextField>
-            <Button fx:id="Loginbutton" layoutX="57.0" layoutY="252.0" mnemonicParsing="false" onAction="#LoginAdmin" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: #42a4e1;" text="Login">
+            <Button fx:id="Loginbutton" layoutX="57.0" layoutY="302.0" mnemonicParsing="false" onAction="#LoginAdmin" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: #42a4e1;" text="Admin">
                <font>
                   <Font name="Tahoma Bold" size="14.0" />
                </font>
             </Button>
-            <Label layoutX="29.0" layoutY="66.0" prefHeight="25.0" prefWidth="124.0" text="Welcome Back" textFill="#42a4e1">
+            <Label layoutX="29.0" layoutY="66.0" prefHeight="25.0" prefWidth="124.0" text="Welcome " textFill="#42a4e1">
                <font>
                   <Font name="Tahoma Bold" size="14.0" />
                </font>
@@ -57,6 +57,11 @@
             <Button fx:id="closebutton" layoutX="323.0" layoutY="8.0" mnemonicParsing="false" onAction="#closebutton" style="-fx-background-color: transparent;" text="X">
                <font>
                   <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="Loginbutton1" layoutX="57.0" layoutY="254.0" mnemonicParsing="false" onAction="#LoginUser" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: #42a4e1;" text="User">
+               <font>
+                  <Font name="Tahoma Bold" size="14.0" />
                </font>
             </Button>
          </children>
