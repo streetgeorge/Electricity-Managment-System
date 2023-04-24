@@ -15,7 +15,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="458.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.AdminDashboardController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
@@ -100,32 +99,32 @@
                                     </TableView>
                                  </children>
                               </AnchorPane>
-                              <TextField fx:id="houseidtxt" alignment="CENTER" layoutX="14.0" layoutY="243.0" prefHeight="25.0" prefWidth="177.0" promptText="HouseID" styleClass="shadow" stylesheets="@admindashboard.css">
+                              <TextField fx:id="houseidtxt" alignment="CENTER" layoutX="14.0" layoutY="243.0" onAction="#AdminAddHouse" prefHeight="25.0" prefWidth="177.0" promptText="HouseID" styleClass="shadow" stylesheets="@admindashboard.css">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="countrytxt" alignment="CENTER" layoutX="14.0" layoutY="280.0" prefHeight="25.0" prefWidth="177.0" promptText="Country" styleClass="shadow" stylesheets="@admindashboard.css">
+                              <TextField fx:id="countrytxt" alignment="CENTER" layoutX="14.0" layoutY="280.0" onAction="#AdminAddHouse" prefHeight="25.0" prefWidth="177.0" promptText="Country" styleClass="shadow" stylesheets="@admindashboard.css">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="towntxt" alignment="CENTER" layoutX="14.0" layoutY="318.0" prefHeight="25.0" prefWidth="177.0" promptText="Town" styleClass="shadow" stylesheets="@admindashboard.css">
+                              <TextField fx:id="towntxt" alignment="CENTER" layoutX="14.0" layoutY="318.0" onAction="#AdminAddHouse" prefHeight="25.0" prefWidth="177.0" promptText="Town" styleClass="shadow" stylesheets="@admindashboard.css">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="houseaddresstxt" alignment="CENTER" layoutX="221.0" layoutY="243.0" prefHeight="25.0" prefWidth="177.0" promptText="Address" styleClass="shadow" stylesheets="@admindashboard.css">
+                              <TextField fx:id="houseaddresstxt" alignment="CENTER" layoutX="221.0" layoutY="243.0" onAction="#AdminAddHouse" prefHeight="25.0" prefWidth="177.0" promptText="Address" styleClass="shadow" stylesheets="@admindashboard.css">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="ownertxt" alignment="CENTER" layoutX="221.0" layoutY="280.0" prefHeight="25.0" prefWidth="177.0" promptText="Owner" styleClass="shadow" stylesheets="@admindashboard.css">
+                              <TextField fx:id="ownertxt" alignment="CENTER" layoutX="221.0" layoutY="280.0" onAction="#AdminAddHouse" prefHeight="25.0" prefWidth="177.0" promptText="Owner" styleClass="shadow" stylesheets="@admindashboard.css">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <Button fx:id="house_addbutton" layoutX="432.0" layoutY="243.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Add">
+                              <Button fx:id="house_addbutton" layoutX="432.0" layoutY="243.0" mnemonicParsing="false" onAction="#AdminAddHouse" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Add">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
@@ -137,7 +136,7 @@
                               </Button>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="Userform" layoutX="9.0" layoutY="6.0" prefHeight="407.0" prefWidth="542.0" stylesheets="@admindashboard.css" visible="false">
+                        <AnchorPane fx:id="Userform" layoutX="9.0" layoutY="6.0" prefHeight="407.0" prefWidth="542.0" stylesheets="@admindashboard.css">
                            <styleClass>
                               <String fx:value="White-bg" />
                               <String fx:value="shadow" />
@@ -151,26 +150,20 @@
                                  <children>
                                     <TableView fx:id="users_tableview" layoutX="6.0" layoutY="3.0" prefHeight="200.0" prefWidth="509.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <columns>
-                                          <TableColumn fx:id="users_col_userid" prefWidth="75.0" text="UserID" />
-                                          <TableColumn fx:id="users_col_firstname" prefWidth="95.0" text="FirstName" />
-                                          <TableColumn fx:id="users_col_lastname" prefWidth="99.0" text="LastName" />
-                                          <TableColumn fx:id="users_col_address" prefWidth="115.0" text="Address" />
-                                          <TableColumn fx:id="users_col_phone" prefWidth="124.0" text="Phone" />
+                                          <TableColumn fx:id="users_col_firstname" prefWidth="112.0" text="FirstName" />
+                                          <TableColumn fx:id="users_col_lastname" prefWidth="108.0" text="LastName" />
+                                          <TableColumn fx:id="users_col_address" prefWidth="119.0" text="Address" />
+                                          <TableColumn fx:id="users_col_phone" prefWidth="169.0" text="Phone" />
                                        </columns>
                                     </TableView>
                                  </children>
                               </AnchorPane>
-                              <TextField fx:id="useridtxt" alignment="CENTER" layoutX="14.0" layoutY="243.0" prefHeight="25.0" prefWidth="177.0" promptText="UserID" styleClass="shadow" stylesheets="@admindashboard.css">
-                                 <font>
-                                    <Font name="Tahoma Bold" size="13.0" />
-                                 </font>
-                              </TextField>
                               <TextField fx:id="firstnametxt" alignment="CENTER" layoutX="14.0" layoutY="280.0" prefHeight="25.0" prefWidth="177.0" promptText="FirstName" styleClass="shadow" stylesheets="@admindashboard.css">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="lastnametxt" alignment="CENTER" layoutX="14.0" layoutY="318.0" prefHeight="25.0" prefWidth="177.0" promptText="LastName" styleClass="shadow" stylesheets="@admindashboard.css">
+                              <TextField fx:id="lastnametxt" alignment="CENTER" layoutX="14.0" layoutY="243.0" prefHeight="25.0" prefWidth="177.0" promptText="LastName" styleClass="shadow" stylesheets="@admindashboard.css">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
@@ -180,7 +173,7 @@
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="phonetxt" alignment="CENTER" layoutX="221.0" layoutY="280.0" prefHeight="25.0" prefWidth="177.0" promptText="Phone+" styleClass="shadow" stylesheets="@admindashboard.css">
+                              <TextField fx:id="phonetxt" alignment="CENTER" layoutX="14.0" layoutY="319.0" prefHeight="25.0" prefWidth="177.0" promptText="Phone+" styleClass="shadow" stylesheets="@admindashboard.css">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
@@ -197,7 +190,7 @@
                               </Button>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="homeform" layoutX="9.0" layoutY="6.0" prefHeight="407.0" prefWidth="542.0" stylesheets="@admindashboard.css">
+                        <AnchorPane fx:id="homeform" layoutX="9.0" layoutY="6.0" prefHeight="407.0" prefWidth="542.0" stylesheets="@admindashboard.css" visible="false">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="152.0" prefWidth="509.0" stylesheets="@admindashboard.css">
                                  <styleClass>

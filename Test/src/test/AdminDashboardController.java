@@ -2,8 +2,14 @@
 package test;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +23,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -43,19 +50,19 @@ public class AdminDashboardController implements Initializable {
     private Button house_addbutton;
 
     @FXML
-    private TableColumn<?, ?> house_col_address;
+    private TableColumn<adminHouseData, String> house_col_address;
 
     @FXML
-    private TableColumn<?, ?> house_col_country;
+    private TableColumn<adminHouseData, String> house_col_country;
 
     @FXML
-    private TableColumn<?, ?> house_col_houseid;
+    private TableColumn<adminHouseData, String> house_col_houseid;
 
     @FXML
-    private TableColumn<?, ?> house_col_owner;
+    private TableColumn<adminHouseData, String> house_col_owner;
 
     @FXML
-    private TableColumn<?, ?> house_col_town;
+    private TableColumn<adminHouseData, String> house_col_town;
 
     @FXML
     private Button house_deletebutton;
@@ -70,7 +77,7 @@ public class AdminDashboardController implements Initializable {
     private Button usersbutton;
 
     @FXML
-    private TableView<?> house_tableview;
+    private TableView<adminHouseData> house_tableview;
 
     @FXML
     private TextField houseaddresstxt;
@@ -128,6 +135,14 @@ public class AdminDashboardController implements Initializable {
     private TableView<?> users_tableview;
     
     
+    private Connection connect;
+    private PreparedStatement stm;
+    private Statement statement;
+    private ResultSet result;
+    private Alert alert;
+    
+    
+    
     public void SwitchingForm(ActionEvent event){
     
         if (event.getSource() == homebutton){
@@ -152,6 +167,129 @@ public class AdminDashboardController implements Initializable {
  
     }
     
+    
+    public void AdminAddUser(){
+            
+            String sql ="INSERT INTO `users`( `firstName`, `lastName`, `address`, `phone`) VALUES (?,?,?,?)";
+            connect = database.connectDb();
+          
+        try{
+    
+    
+            if(firstnametxt.getText().isEmpty() || lastnametxt.getText().isEmpty() || phonetxt.getText().isEmpty()||useraddresstxt.getText().isEmpty()){
+
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please fill in all the blanck");
+                alert.showAndWait();
+
+            }else{ 
+                stm = connect.prepareStatement(sql);
+
+                    stm.setString(1,firstnametxt.getText());
+                    stm.setString(2,lastnametxt.getText());
+                    stm.setString(3,useraddresstxt.getText());
+                    stm.setString(4,phonetxt.getText());
+                    stm.executeUpdate();
+                    
+                    alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Account Have been Add successfully");
+                    alert.showAndWait();                   
+            }
+            
+        }catch(Exception e){e.printStackTrace();}
+        
+          
+    }
+    
+
+    public void AdminAddHouse(){
+    
+        String sql ="INSERT INTO `housedata`(`houseID`, `country`, `town`, `owner`,`address`) VALUES (?,?,?,?,?)";
+        connect = database.connectDb();
+        
+        try{
+            
+           String houseID = houseidtxt.getText();
+           String country = countrytxt.getText();
+           String town = towntxt.getText();
+           String address = houseaddresstxt.getText();
+           String owner = ownertxt.getText();
+         
+           if (houseidtxt.getText().isEmpty()||countrytxt.getText().isEmpty()||
+                   towntxt.getText().isEmpty()||houseaddresstxt.getText().isEmpty()||ownertxt.getText().isEmpty()){
+           
+                   Alert alert = new Alert(AlertType.ERROR);
+                   alert.setTitle("Error Message");
+                   alert.setHeaderText(null);
+                   alert.setContentText("Please fill and the blank");
+                   alert.showAndWait();
+                   
+           } else {
+                    stm = connect.prepareStatement(sql);
+                    stm.setString(1, houseID);
+                    stm.setString(2, country);
+                    stm.setString(3, town);
+                    stm.setString(5, owner);
+                    stm.setString(4, address);
+                    stm.executeUpdate();
+                    
+                    Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("details add");
+                    alert.showAndWait();
+                    
+                    showHouseData();
+           }
+
+        
+        }catch(Exception e){e.printStackTrace();}
+    
+    }
+//*******************************************************************************************************************************************************
+     public ObservableList<adminHouseData> house(){
+    
+         ObservableList<adminHouseData>listData = FXCollections.observableArrayList();
+         String sql = "SELECT * FROM `housedata` ";
+         
+         try{
+             
+             stm  = connect.prepareStatement(sql);
+             result = stm.executeQuery();
+             adminHouseData AdmihouseD;
+             
+             while(result.next()){
+             
+                 AdmihouseD = new adminHouseData (result.getString("houseID"),result.getString("country"),
+                 result.getString("town"),result.getString("addess"),result.getString("owner"));
+                 
+                 listData.add(AdmihouseD);
+             }
+         
+         }catch(Exception e){e.printStackTrace();}
+         return listData;
+         
+    }
+    
+    private ObservableList<adminHouseData> datalist;
+    public void showHouseData(){
+    
+        datalist = house();
+        house_col_houseid.setCellValueFactory(new PropertyValueFactory<>("houseID"));
+        house_col_country.setCellValueFactory(new PropertyValueFactory<>("country"));
+        house_col_town.setCellValueFactory(new PropertyValueFactory<>("town"));
+        house_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
+        house_col_owner.setCellValueFactory(new PropertyValueFactory<>("owner"));
+        house_tableview.setItems(datalist);
+ 
+        
+    }
+//******************************************************************************************************************************************************
+   
     public void logout(){
     
         try{
@@ -165,7 +303,7 @@ public class AdminDashboardController implements Initializable {
             
                 logoutbutton.getScene().getWindow().hide();
                 Parent root;
-                root = FXMLLoader.load(getClass().getResource("LogPage.fxml"));
+                root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
                 stage.initStyle(StageStyle.TRANSPARENT);
@@ -183,7 +321,7 @@ public class AdminDashboardController implements Initializable {
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        showHouseData();
     }    
     
 }
