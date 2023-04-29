@@ -29,6 +29,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 
+
 public class AdminDashboardController implements Initializable {
     
        @FXML
@@ -50,19 +51,19 @@ public class AdminDashboardController implements Initializable {
     private Button house_addbutton;
 
     @FXML
-    private TableColumn<adminHouseData, String> house_col_address;
+    private TableColumn<houseData,String> house_col_address;
 
     @FXML
-    private TableColumn<adminHouseData, String> house_col_country;
+    private TableColumn<houseData,String> house_col_country;
 
     @FXML
-    private TableColumn<adminHouseData, String> house_col_houseid;
+    private TableColumn<houseData,String> house_col_houseid;
 
     @FXML
-    private TableColumn<adminHouseData, String> house_col_owner;
+    private TableColumn<houseData,String> house_col_owner;
 
     @FXML
-    private TableColumn<adminHouseData, String> house_col_town;
+    private TableColumn<houseData,String> house_col_town;
 
     @FXML
     private Button house_deletebutton;
@@ -77,7 +78,7 @@ public class AdminDashboardController implements Initializable {
     private Button usersbutton;
 
     @FXML
-    private TableView<adminHouseData> house_tableview;
+    private TableView<houseData> house_tableview;
 
     @FXML
     private TextField houseaddresstxt;
@@ -117,27 +118,27 @@ public class AdminDashboardController implements Initializable {
     private TextField useridtxt;
 
     @FXML
-    private TableColumn<?, ?> users_col_address;
+    private TableColumn<userData, String> users_col_address;
 
     @FXML
-    private TableColumn<?, ?> users_col_firstname;
+    private TableColumn<userData, String> users_col_firstname;
 
     @FXML
-    private TableColumn<?, ?> users_col_lastname;
+    private TableColumn<userData, String> users_col_lastname;
 
     @FXML
-    private TableColumn<?, ?> users_col_phone;
+    private TableColumn<userData, String> users_col_phone;
 
     @FXML
-    private TableColumn<?, ?> users_col_userid;
-
+    private TableView<userData> users_tableview;
+    
     @FXML
-    private TableView<?> users_tableview;
+    private Button house_refreshbutton;
     
     
     private Connection connect;
     private PreparedStatement stm;
-    private Statement statement;
+    
     private ResultSet result;
     private Alert alert;
     
@@ -167,10 +168,11 @@ public class AdminDashboardController implements Initializable {
  
     }
     
+//****************************************************ADMIN DASHBOARD USER MODULE************************************************************************* 
     
     public void AdminAddUser(){
             
-            String sql ="INSERT INTO `users`( `firstName`, `lastName`, `address`, `phone`) VALUES (?,?,?,?)";
+            String sql ="INSERT INTO `userdata`( `firstName`, `lastName`, `address`, `phone`) VALUES (?,?,?,?)";
             connect = database.connectDb();
           
         try{
@@ -193,7 +195,7 @@ public class AdminDashboardController implements Initializable {
                     stm.setString(4,phonetxt.getText());
                     stm.executeUpdate();
                     
-                    alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
                     alert.setContentText("Account Have been Add successfully");
@@ -201,11 +203,58 @@ public class AdminDashboardController implements Initializable {
             }
             
         }catch(Exception e){e.printStackTrace();}
-        
-          
+    
     }
     
+     public void DeleteUser(){
+         
+        users_tableview.getItems().removeAll(users_tableview.getSelectionModel().getSelectedItem());
+        
+    }
+    
+    public void refreshUser(){
+        
+        
+    
+        String sql ="SELECT * FROM `userdata`";
+        connect = database.connectDb();
+    
+        try{
 
+            userList.clear();
+            stm = connect.prepareCall(sql);
+            result = stm.executeQuery();
+            
+            while(result.next()){
+            
+                userList.add(new userData(result.getString("firstname"),result.getString("lastname"),result.getString("address"),
+                        result.getString("phone")));
+                
+                users_tableview.setItems(userList);
+
+            }
+
+        }catch(Exception e){e.printStackTrace();}
+
+    }
+     ObservableList<userData> userList =FXCollections.observableArrayList();
+    
+    public void loadUserData() {
+         
+         connect = database.connectDb();
+         refreshUser();
+         
+         users_col_firstname.setCellValueFactory(new PropertyValueFactory<>("firstname"));
+         users_col_lastname.setCellValueFactory(new PropertyValueFactory<>("lastname"));
+         users_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
+         users_col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+         house_col_owner.setCellValueFactory(new PropertyValueFactory<>("Owner"));
+        
+    }
+    
+   
+//*****************************************ADMIN DASHBOARD HOUSE MODULE ***************************************************************************************************************
+    
     public void AdminAddHouse(){
     
         String sql ="INSERT INTO `housedata`(`houseID`, `country`, `town`, `owner`,`address`) VALUES (?,?,?,?,?)";
@@ -237,91 +286,102 @@ public class AdminDashboardController implements Initializable {
                     stm.setString(4, address);
                     stm.executeUpdate();
                     
-                    Alert alert = new Alert(AlertType.INFORMATION);
+                    alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
                     alert.setContentText("details add");
                     alert.showAndWait();
                     
-                    showHouseData();
            }
 
         
         }catch(Exception e){e.printStackTrace();}
     
     }
-//*******************************************************************************************************************************************************
-     public ObservableList<adminHouseData> house(){
     
-         ObservableList<adminHouseData>listData = FXCollections.observableArrayList();
-         String sql = "SELECT * FROM `housedata` ";
-         
-         try{
-             
-             stm  = connect.prepareStatement(sql);
-             result = stm.executeQuery();
-             adminHouseData AdmihouseD;
-             
-             while(result.next()){
-             
-                 AdmihouseD = new adminHouseData (result.getString("houseID"),result.getString("country"),
-                 result.getString("town"),result.getString("addess"),result.getString("owner"));
-                 
-                 listData.add(AdmihouseD);
-             }
-         
-         }catch(Exception e){e.printStackTrace();}
-         return listData;
-         
-    }
-    
-    private ObservableList<adminHouseData> datalist;
-    public void showHouseData(){
-    
-        datalist = house();
-        house_col_houseid.setCellValueFactory(new PropertyValueFactory<>("houseID"));
-        house_col_country.setCellValueFactory(new PropertyValueFactory<>("country"));
-        house_col_town.setCellValueFactory(new PropertyValueFactory<>("town"));
-        house_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
-        house_col_owner.setCellValueFactory(new PropertyValueFactory<>("owner"));
-        house_tableview.setItems(datalist);
- 
+    public void DeleteHouse(){
         
+        house_tableview.getItems().removeAll(house_tableview.getSelectionModel().getSelectedItem());
+    
     }
-//******************************************************************************************************************************************************
-   
-    public void logout(){
+
+    public void refreshHouse(){
+    
+        String sql ="SELECT * FROM `housedata`";
+        connect = database.connectDb();
     
         try{
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Logout");
-            alert.setHeaderText(null);
-            alert.setContentText("Do you Want to Logout");
-            Optional<ButtonType> option = alert.showAndWait();
+
+            houseList.clear();
+            stm = connect.prepareCall(sql);
+            result = stm.executeQuery();
             
-            if(option.get().equals(ButtonType.OK)){
+            while(result.next()){
             
+                houseList.add(new houseData(result.getString("houseID"),result.getString("country"),result.getString("town"),
+                        result.getString("address"),result.getString("Owner")));
+                
+                house_tableview.setItems(houseList);
+            
+            
+            }
+
+        }catch(Exception e){e.printStackTrace();}
+
+    }
+     ObservableList<houseData> houseList =FXCollections.observableArrayList();
+    
+    public void loadHouseData() {
+         
+         connect = database.connectDb();
+         refreshHouse();
+         
+         house_col_houseid.setCellValueFactory(new PropertyValueFactory<>("houseID"));
+         house_col_country.setCellValueFactory(new PropertyValueFactory<>("country"));
+         house_col_town.setCellValueFactory(new PropertyValueFactory<>("town"));
+         house_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
+         house_col_owner.setCellValueFactory(new PropertyValueFactory<>("Owner"));
+        
+    }
+ 
+    public void logout(){
+            
+         alert = new Alert(Alert.AlertType.CONFIRMATION);
+         alert.setTitle("Logout");
+         alert.setHeaderText(null);
+         alert.setContentText("Are you sure you want to logout");
+         Optional<ButtonType> option = alert.showAndWait();
+
+        try{
+              if(option.get().equals(ButtonType.OK)){
+                  
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setTitle("Logout confirmation");
+                alert.setContentText("ARE you sure you want to logout");
                 logoutbutton.getScene().getWindow().hide();
-                Parent root;
-                root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
                 stage.initStyle(StageStyle.TRANSPARENT);
                 stage.setScene(scene);
                 stage.show();
-  
-            }
-
+                }
+   
         }catch(Exception e){e.printStackTrace();}
-    
+
     }
-    
+//********************************************************************************************************************************************************    
     
     public void closebutton(){System.exit(0);}
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        showHouseData();
+        
+        loadHouseData();
+        loadUserData();
     }    
+
+   
     
 }

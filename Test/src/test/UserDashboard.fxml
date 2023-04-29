@@ -5,6 +5,7 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -134,14 +135,19 @@
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="house_deletebutton" layoutX="432.0" layoutY="280.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Delete">
+                              <Button fx:id="house_deletebutton" layoutX="432.0" layoutY="318.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Delete">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="house_refreshbutton" layoutX="432.0" layoutY="280.0" mnemonicParsing="false" onAction="#loadHouseData" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Refresh">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </Button>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="Productionform" layoutX="9.0" layoutY="6.0" prefHeight="407.0" prefWidth="542.0" stylesheets="@admindashboard.css">
+                        <AnchorPane fx:id="Productionform" layoutX="9.0" layoutY="6.0" prefHeight="407.0" prefWidth="542.0" stylesheets="@admindashboard.css" visible="false">
                            <styleClass>
                               <String fx:value="White-bg" />
                               <String fx:value="shadow" />
@@ -164,27 +170,22 @@
                                     </TableView>
                                  </children>
                               </AnchorPane>
-                              <TextField fx:id="productionhouseidtxt" alignment="CENTER" layoutX="14.0" layoutY="243.0" prefHeight="25.0" prefWidth="177.0" promptText="UserID" styleClass="shadow" stylesheets="@admindashboard.css">
+                              <TextField fx:id="productionhouseidtxt" alignment="CENTER" layoutX="14.0" layoutY="243.0" onAction="#UserAddProduction" prefHeight="25.0" prefWidth="177.0" promptText="HouseID" styleClass="shadow" stylesheets="@admindashboard.css">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="productiondatetxt" alignment="CENTER" layoutX="14.0" layoutY="280.0" prefHeight="25.0" prefWidth="177.0" promptText="FirstName" styleClass="shadow" stylesheets="@admindashboard.css">
+                              <TextField fx:id="productiondailytxt" alignment="CENTER" layoutX="14.0" layoutY="318.0" onAction="#UserAddProduction" prefHeight="25.0" prefWidth="177.0" promptText="Daily Prod" styleClass="shadow" stylesheets="@admindashboard.css">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="productiondailytxt" alignment="CENTER" layoutX="14.0" layoutY="318.0" prefHeight="25.0" prefWidth="177.0" promptText="LastName" styleClass="shadow" stylesheets="@admindashboard.css">
+                              <TextField fx:id="productionweeklytxt" alignment="CENTER" layoutX="221.0" layoutY="243.0" onAction="#UserAddProduction" prefHeight="25.0" prefWidth="177.0" promptText="Weekly Prod" styleClass="shadow" stylesheets="@admindashboard.css">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="productionweeklytxt" alignment="CENTER" layoutX="221.0" layoutY="243.0" prefHeight="25.0" prefWidth="177.0" promptText="Address" styleClass="shadow" stylesheets="@admindashboard.css">
-                                 <font>
-                                    <Font name="Tahoma Bold" size="13.0" />
-                                 </font>
-                              </TextField>
-                              <Button fx:id="Production_addbutton" layoutX="432.0" layoutY="243.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Add">
+                              <Button fx:id="Production_addbutton" layoutX="432.0" layoutY="243.0" mnemonicParsing="false" onAction="#UserAddProduction" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Add">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
@@ -194,6 +195,12 @@
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </Button>
+                              <Button fx:id="Production_Refreshbutton" layoutX="432.0" layoutY="318.0" mnemonicParsing="false" onAction="#refreshProduction" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Refresh">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </Button>
+                              <DatePicker fx:id="productiondatetxt" layoutX="13.0" layoutY="280.0" onAction="#UserAddProduction" prefHeight="25.0" prefWidth="179.0" promptText="Date" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="homeform" layoutX="9.0" layoutY="6.0" prefHeight="407.0" prefWidth="542.0" stylesheets="@admindashboard.css" visible="false">
@@ -232,7 +239,7 @@
                               <String fx:value="White-bg" />
                            </styleClass>
                         </AnchorPane>
-                        <AnchorPane fx:id="Consumptionform" layoutX="9.0" layoutY="6.0" prefHeight="407.0" prefWidth="542.0" stylesheets="@admindashboard.css" visible="false">
+                        <AnchorPane fx:id="Consumptionform" layoutX="9.0" layoutY="6.0" prefHeight="407.0" prefWidth="542.0" stylesheets="@admindashboard.css">
                            <styleClass>
                               <String fx:value="White-bg" />
                               <String fx:value="shadow" />
@@ -260,11 +267,6 @@
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="consumptionDatetxt" alignment="CENTER" layoutX="14.0" layoutY="280.0" onAction="#UserAddConsumption" prefHeight="25.0" prefWidth="177.0" promptText="Date" styleClass="shadow" stylesheets="@admindashboard.css">
-                                 <font>
-                                    <Font name="Tahoma Bold" size="13.0" />
-                                 </font>
-                              </TextField>
                               <TextField fx:id="consumptionDailytxt" alignment="CENTER" layoutX="14.0" layoutY="318.0" onAction="#UserAddConsumption" prefHeight="25.0" prefWidth="177.0" promptText="Daily" styleClass="shadow" stylesheets="@admindashboard.css">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
@@ -285,6 +287,12 @@
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </Button>
+                              <Button fx:id="Consumption_Resfreshbutton" layoutX="432.0" layoutY="318.0" mnemonicParsing="false" onAction="#refreshConsumption" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Resfresh">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </Button>
+                              <DatePicker fx:id="consumptionDatetxt" layoutX="13.0" layoutY="280.0" onAction="#UserAddConsumption" prefHeight="25.0" prefWidth="179.0" promptText="Date" />
                            </children>
                         </AnchorPane>
                      </children>

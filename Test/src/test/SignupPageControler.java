@@ -113,10 +113,10 @@ public class SignupPageControler implements Initializable {
 
                     stm.setString(1,firstname.getText());
                     stm.setString(2,lastname.getText());
-                    stm.setString(4,email.getText());
-                    stm.setString(5,phone.getText());
-                    stm.setString(6,password.getText());
-                    stm.setString(7,confirmpassword.getText());
+                    stm.setString(3,email.getText());
+                    stm.setString(4,phone.getText());
+                    stm.setString(5,password.getText());
+                    stm.setString(6,confirmpassword.getText());
                     stm.executeUpdate();
                     
                     alert = new Alert(Alert.AlertType.CONFIRMATION);

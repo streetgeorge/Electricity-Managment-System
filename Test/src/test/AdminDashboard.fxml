@@ -45,7 +45,7 @@
                               <Font name="Tahoma" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutX="11.0" layoutY="91.0" prefHeight="18.0" prefWidth="172.0" text="Admin: PrgGroup ">
+                        <Label fx:id="AdminName" alignment="CENTER" layoutX="11.0" layoutY="91.0" prefHeight="18.0" prefWidth="172.0" text="Admin: PrgGroup ">
                            <font>
                               <Font name="Tahoma Bold" size="14.0" />
                            </font>
@@ -129,7 +129,12 @@
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="house_deletebutton" layoutX="432.0" layoutY="280.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Delete">
+                              <Button fx:id="house_deletebutton" layoutX="432.0" layoutY="318.0" mnemonicParsing="false" onAction="#DeleteHouse" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Delete">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="house_refreshbutton" layoutX="432.0" layoutY="280.0" mnemonicParsing="false" onAction="#refreshHouse" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Refresh">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
@@ -151,39 +156,44 @@
                                     <TableView fx:id="users_tableview" layoutX="6.0" layoutY="3.0" prefHeight="200.0" prefWidth="509.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <columns>
                                           <TableColumn fx:id="users_col_firstname" prefWidth="112.0" text="FirstName" />
-                                          <TableColumn fx:id="users_col_lastname" prefWidth="108.0" text="LastName" />
-                                          <TableColumn fx:id="users_col_address" prefWidth="119.0" text="Address" />
-                                          <TableColumn fx:id="users_col_phone" prefWidth="169.0" text="Phone" />
+                                          <TableColumn fx:id="users_col_lastname" prefWidth="117.0" text="LastName" />
+                                          <TableColumn fx:id="users_col_address" prefWidth="132.0" text="Address" />
+                                          <TableColumn fx:id="users_col_phone" prefWidth="147.0" text="Phone" />
                                        </columns>
                                     </TableView>
                                  </children>
                               </AnchorPane>
-                              <TextField fx:id="firstnametxt" alignment="CENTER" layoutX="14.0" layoutY="280.0" prefHeight="25.0" prefWidth="177.0" promptText="FirstName" styleClass="shadow" stylesheets="@admindashboard.css">
+                              <TextField fx:id="firstnametxt" alignment="CENTER" layoutX="14.0" layoutY="243.0" onAction="#AdminAddUser" prefHeight="25.0" prefWidth="177.0" promptText="FirstName" styleClass="shadow" stylesheets="@admindashboard.css">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="lastnametxt" alignment="CENTER" layoutX="14.0" layoutY="243.0" prefHeight="25.0" prefWidth="177.0" promptText="LastName" styleClass="shadow" stylesheets="@admindashboard.css">
+                              <TextField fx:id="lastnametxt" alignment="CENTER" layoutX="14.0" layoutY="280.0" onAction="#AdminAddUser" prefHeight="25.0" prefWidth="177.0" promptText="LastName" styleClass="shadow" stylesheets="@admindashboard.css">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="useraddresstxt" alignment="CENTER" layoutX="221.0" layoutY="243.0" prefHeight="25.0" prefWidth="177.0" promptText="Address" styleClass="shadow" stylesheets="@admindashboard.css">
+                              <TextField fx:id="useraddresstxt" alignment="CENTER" layoutX="14.0" layoutY="319.0" onAction="#AdminAddUser" prefHeight="25.0" prefWidth="177.0" promptText="Address" styleClass="shadow" stylesheets="@admindashboard.css">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="phonetxt" alignment="CENTER" layoutX="14.0" layoutY="319.0" prefHeight="25.0" prefWidth="177.0" promptText="Phone+" styleClass="shadow" stylesheets="@admindashboard.css">
+                              <TextField fx:id="phonetxt" alignment="CENTER" layoutX="215.0" layoutY="243.0" onAction="#AdminAddUser" prefHeight="25.0" prefWidth="177.0" promptText="Phone+" styleClass="shadow" stylesheets="@admindashboard.css">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </TextField>
-                              <Button fx:id="user_addbutton" layoutX="432.0" layoutY="243.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Add">
+                              <Button fx:id="user_addbutton" layoutX="432.0" layoutY="243.0" mnemonicParsing="false" onAction="#AdminAddUser" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Add">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="user_deletebutton" layoutX="432.0" layoutY="280.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Delete">
+                              <Button fx:id="user_deletebutton" layoutX="432.0" layoutY="319.0" mnemonicParsing="false" onAction="#DeleteUser" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Delete">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="house_refreshbutton1" layoutX="432.0" layoutY="280.0" mnemonicParsing="false" onAction="#refreshUser" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Refresh">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>

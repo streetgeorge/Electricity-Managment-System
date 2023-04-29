@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,9 +19,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -30,27 +34,30 @@ public class UserDashboardController implements Initializable {
     
     @FXML
     private Button Consumption_addbutton;
+    
+    @FXML
+    private Button house_refreshbutton;
 
     @FXML
-    private TableColumn<?, ?> Consumption_col_daily;
+    private TableColumn<ConsumptionData,String> Consumption_col_daily;
 
     @FXML
-    private TableColumn<?, ?> Consumption_col_date;
+    private TableColumn<ConsumptionData,String>Consumption_col_date;
 
     @FXML
-    private TableColumn<?, ?> Consumption_col_houseID;
+    private TableColumn<ConsumptionData,String> Consumption_col_houseID;
 
     @FXML
-    private TableColumn<?, ?> Consumption_col_total;
+    private TableColumn<ConsumptionData,String> Consumption_col_total;
 
     @FXML
-    private TableColumn<?, ?> Consumption_col_weekly;
+    private TableColumn<ConsumptionData,String>  Consumption_col_weekly;
 
     @FXML
     private Button Consumption_deletebutton;
 
     @FXML
-    private TableView<?> Consumption_tableview;
+    private TableView<ConsumptionData> Consumption_tableview;
 
     @FXML
     private Button Consumptionbutton;
@@ -68,7 +75,7 @@ public class UserDashboardController implements Initializable {
     private Button Production_deletebutton;
 
     @FXML
-    private TableView<?> Production_tableview;
+    private TableView<ProductionData> Production_tableview;
 
     @FXML
     private AnchorPane Productionform;
@@ -78,9 +85,6 @@ public class UserDashboardController implements Initializable {
 
     @FXML
     private TextField consumptionDailytxt;
-
-    @FXML
-    private TextField consumptionDatetxt;
 
     @FXML
     private TextField consumptionHouseIDtxt;
@@ -104,25 +108,25 @@ public class UserDashboardController implements Initializable {
     private Button house_addbutton;
 
     @FXML
-    private TableColumn<?, ?> house_col_address;
+    private TableColumn<houseData,String> house_col_address;
 
     @FXML
-    private TableColumn<?, ?> house_col_country;
+    private TableColumn<houseData,String>  house_col_country;
 
     @FXML
-    private TableColumn<?, ?> house_col_houseid;
+    private TableColumn<houseData,String>  house_col_houseid;
 
     @FXML
-    private TableColumn<?, ?> house_col_owner;
+    private TableColumn<houseData,String>  house_col_owner;
 
     @FXML
-    private TableColumn<?, ?> house_col_town;
+    private TableColumn<houseData,String>  house_col_town;
 
     @FXML
     private Button house_deletebutton;
 
     @FXML
-    private TableView<?> house_tableview;
+    private TableView<houseData> house_tableview;
 
     @FXML
     private TextField houseaddresstxt;
@@ -143,26 +147,26 @@ public class UserDashboardController implements Initializable {
     private TextField ownertxt;
 
     @FXML
-    private TableColumn<?, ?> production_col_daily;
+    private TableColumn<ProductionData, String> production_col_daily;
 
     @FXML
-    private TableColumn<?, ?> production_col_date;
+    private TableColumn<ProductionData, String>  production_col_date;
 
     @FXML
-    private TableColumn<?, ?> production_col_houseid;
+    private TableColumn<ProductionData, String>  production_col_houseid;
 
     @FXML
-    private TableColumn<?, ?> production_col_total;
+    private TableColumn<ProductionData, String>  production_col_total;
 
     @FXML
-    private TableColumn<?, ?> production_col_weekly;
+    private TableColumn<ProductionData, String> production_col_weekly;
 
     @FXML
     private TextField productiondailytxt;
 
-    @FXML
-    private TextField productiondatetxt;
-
+   @FXML
+    private DatePicker consumptionDatetxt;
+   
     @FXML
     private TextField productionhouseidtxt;
 
@@ -171,15 +175,21 @@ public class UserDashboardController implements Initializable {
 
     @FXML
     private TextField productionweeklytxt;
+    
+    
+    @FXML
+    private DatePicker productiondatetxt;
 
     @FXML
     private TextField towntxt;
     
     private Alert alert;
-    
     private Connection connect;
     private ResultSet result;
     private PreparedStatement stm;
+    
+    
+    
     
     
     public void SwitchingFormUser(ActionEvent event){
@@ -216,23 +226,27 @@ public class UserDashboardController implements Initializable {
  
     }
     
-     public void UserAddConsumption(){
     
-        String sql ="INSERT INTO `consumptiondata`(`houseID`, `Date`, `daily`, `weekly`) VALUES (?,?,?,?)";
+
+//**********************************************************************************************************************************************
+    
+     
+       public void UserAddProduction(){
+    
+        String sql ="INSERT INTO `productiondata`(`houseID`, `date`, `dailyProd`, `weeklyProd`) VALUES (?,?,?,?)";
         connect = database.connectDb();
         
         try{
             
-           String houseID = consumptionHouseIDtxt.getText();
-           String date = consumptionDatetxt.getText();
-           String daily = consumptionDailytxt.getText();
-           String weekly = consumptionWeeklytxt.getText();
+           String houseID = productionhouseidtxt.getText();
+           Date date = Date.valueOf(productiondatetxt.getValue());
+           Double daily = Double.valueOf(productiondailytxt.getText());
+           Double weekly = Double.valueOf(productionweeklytxt.getText());
            
          
-           if (consumptionHouseIDtxt.getText().isEmpty()||consumptionDatetxt.getText().isEmpty()||
-                   consumptionDailytxt.getText().isEmpty()||consumptionWeeklytxt.getText().isEmpty()){
+           if (productionhouseidtxt.getText().isEmpty()||productiondailytxt.getText().isEmpty()||productionweeklytxt.getText().isEmpty()){
            
-                   Alert alert = new Alert(Alert.AlertType.ERROR);
+                   alert = new Alert(Alert.AlertType.ERROR);
                    alert.setTitle("Error Message");
                    alert.setHeaderText(null);
                    alert.setContentText("Please fill and the blank");
@@ -241,9 +255,9 @@ public class UserDashboardController implements Initializable {
            } else {
                     stm = connect.prepareStatement(sql);
                     stm.setString(1, houseID);
-                    stm.setString(2, date);
-                    stm.setString(3, daily);
-                    stm.setString(4, weekly);
+                    stm.setDate(2, date);
+                    stm.setDouble(3, daily);
+                    stm.setDouble(4, weekly);
                     
                     stm.executeUpdate();
                     
@@ -260,24 +274,66 @@ public class UserDashboardController implements Initializable {
     
     
     }
+        public void refreshProduction(){
     
-    public void UserAddProduction(){
+        String sql ="SELECT * FROM `productiondata`";
+        connect = database.connectDb();
     
-        String sql ="INSERT INTO `production`(`houseID`, `Date`, `daily`, `weekly`) VALUES (?,?,?,?)";
+        try{
+
+            productionList.clear();
+            stm = connect.prepareCall(sql);
+            result = stm.executeQuery();
+            
+            while(result.next()){
+            
+                productionList.add(new ProductionData(result.getString("houseID"),result.getDate("date"),result.getDouble("dailyProd"),
+                        result.getDouble("weeklyProd"),result.getDouble("totalProd")));
+                
+                Production_tableview.setItems(productionList);
+            
+            
+            }
+
+        }catch(Exception e){e.printStackTrace();}
+
+    }
+     ObservableList<ProductionData> productionList =FXCollections.observableArrayList();
+    
+    public void loadProductionData() {
+         
+         connect = database.connectDb();
+         refreshProduction();
+         
+         production_col_houseid.setCellValueFactory(new PropertyValueFactory<>("houseID"));
+         production_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+         production_col_daily.setCellValueFactory(new PropertyValueFactory<>("dailyProd"));
+         production_col_weekly.setCellValueFactory(new PropertyValueFactory<>("weeklyProd"));
+         production_col_total.setCellValueFactory(new PropertyValueFactory<>("totalProd"));
+        
+    }
+ 
+       
+       
+
+       
+    public void UserAddConsumption(){
+    
+        String sql ="INSERT INTO `consomationdata`(`houseID`, `date`, `dailyCons`, `weeklyCons`) VALUES (?,?,?,?)";
         connect = database.connectDb();
         
         try{
             
            String houseID = consumptionHouseIDtxt.getText();
-           String date = consumptionDatetxt.getText();
-           String daily = consumptionDailytxt.getText();
-           String weekly = consumptionWeeklytxt.getText();
+           Date date = Date.valueOf(consumptionDatetxt.getValue());
+           Double daily = Double.valueOf(consumptionDailytxt.getText());
+           Double weekly = Double.valueOf(consumptionWeeklytxt.getText());
            
          
-           if (consumptionHouseIDtxt.getText().isEmpty()||consumptionDatetxt.getText().isEmpty()||
+           if (consumptionHouseIDtxt.getText().isEmpty()||
                    consumptionDailytxt.getText().isEmpty()||consumptionWeeklytxt.getText().isEmpty()){
            
-                   Alert alert = new Alert(Alert.AlertType.ERROR);
+                   alert = new Alert(Alert.AlertType.ERROR);
                    alert.setTitle("Error Message");
                    alert.setHeaderText(null);
                    alert.setContentText("Please fill and the blank");
@@ -286,9 +342,9 @@ public class UserDashboardController implements Initializable {
            } else {
                     stm = connect.prepareStatement(sql);
                     stm.setString(1, houseID);
-                    stm.setString(2, date);
-                    stm.setString(3, daily);
-                    stm.setString(4, weekly);
+                    stm.setDate(2, date);
+                    stm.setDouble(3, daily);
+                    stm.setDouble(4, weekly);
                     
                     stm.executeUpdate();
                     
@@ -302,8 +358,47 @@ public class UserDashboardController implements Initializable {
 
         
         }catch(Exception e){e.printStackTrace();}
+ 
+    }
     
     
+    public void refreshConsumption(){
+    
+        String sql ="SELECT * FROM `consomationdata`";
+        connect = database.connectDb();
+    
+        try{
+
+            consumptionList.clear();
+            stm = connect.prepareCall(sql);
+            result = stm.executeQuery();
+            
+            while(result.next()){
+            
+                consumptionList.add(new ConsumptionData(result.getString("houseID"),result.getDate("date"),result.getDouble("dailyCons"),
+                        result.getDouble("weeklyCons"),result.getDouble("totalCons")));
+                
+                Consumption_tableview.setItems(consumptionList);
+            
+            
+            }
+
+        }catch(Exception e){e.printStackTrace();}
+
+    }
+     ObservableList<ConsumptionData> consumptionList =FXCollections.observableArrayList();
+    
+    public void loadConsumptionData() {
+         
+         connect = database.connectDb();
+         refreshProduction();
+         
+         Consumption_col_houseID.setCellValueFactory(new PropertyValueFactory<>("houseID"));
+         Consumption_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+         Consumption_col_daily.setCellValueFactory(new PropertyValueFactory<>("dailyCons"));
+         Consumption_col_weekly.setCellValueFactory(new PropertyValueFactory<>("weeklyCons"));
+         Consumption_col_total.setCellValueFactory(new PropertyValueFactory<>("totalCons"));
+        
     }
     
     
@@ -323,7 +418,7 @@ public class UserDashboardController implements Initializable {
            if (houseidtxt.getText().isEmpty()||countrytxt.getText().isEmpty()||
                    towntxt.getText().isEmpty()||houseaddresstxt.getText().isEmpty()||ownertxt.getText().isEmpty()){
            
-                   Alert alert = new Alert(Alert.AlertType.ERROR);
+                   alert = new Alert(Alert.AlertType.ERROR);
                    alert.setTitle("Error Message");
                    alert.setHeaderText(null);
                    alert.setContentText("Please fill and the blank");
@@ -338,7 +433,7 @@ public class UserDashboardController implements Initializable {
                     stm.setString(4, address);
                     stm.executeUpdate();
                     
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
                     alert.setContentText("details add");
@@ -350,6 +445,45 @@ public class UserDashboardController implements Initializable {
         }catch(Exception e){e.printStackTrace();}
     
     }
+    public void refreshHouse(){
+    
+        String sql ="SELECT * FROM `housedata`";
+        connect = database.connectDb();
+    
+        try{
+
+            houseList.clear();
+            stm = connect.prepareCall(sql);
+            result = stm.executeQuery();
+            
+            while(result.next()){
+            
+                houseList.add(new houseData(result.getString("houseID"),result.getString("country"),result.getString("town"),
+                        result.getString("address"),result.getString("Owner")));
+                
+                house_tableview.setItems(houseList);
+            
+            
+            }
+
+        }catch(Exception e){e.printStackTrace();}
+
+    }
+     ObservableList<houseData> houseList =FXCollections.observableArrayList();
+    
+    public void loadHouseData() {
+         
+         connect = database.connectDb();
+         refreshHouse();
+         
+         house_col_houseid.setCellValueFactory(new PropertyValueFactory<>("houseID"));
+         house_col_country.setCellValueFactory(new PropertyValueFactory<>("country"));
+         house_col_town.setCellValueFactory(new PropertyValueFactory<>("town"));
+         house_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
+         house_col_owner.setCellValueFactory(new PropertyValueFactory<>("Owner"));
+        
+    }
+ 
     
     
     
@@ -382,12 +516,24 @@ public class UserDashboardController implements Initializable {
         }catch(Exception e){e.printStackTrace();}
       
    }
+    
+    
+     public void Delete(){
+         
+        house_tableview.getItems().removeAll(house_tableview.getSelectionModel().getSelectedItem());
+        
+    }
 
+     
 
     public void closebutton(){System.exit(0);}
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      
+        
+        loadHouseData();
+        loadProductionData();
+        loadConsumptionData();
     }    
     
 }
