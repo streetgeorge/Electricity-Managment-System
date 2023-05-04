@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="458.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.UserDashboardController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <BorderPane prefHeight="458.0" prefWidth="755.0">
+               <top>
+                  <AnchorPane prefHeight="39.0" prefWidth="733.0" style="-fx-background-color: #02344f;" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button fx:id="closebutton" layoutX="716.0" layoutY="8.0" mnemonicParsing="false" onAction="#closebutton" style="-fx-background-color: transparent;" text="X" textFill="#fdd82b">
+                           <font>
+                              <Font name="Tahoma Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <ImageView fitHeight="35.0" fitWidth="96.0" layoutX="5.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../app_design_files/Images/logo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <left>
+                  <AnchorPane prefHeight="419.0" prefWidth="195.0" style="-fx-background-color: #02344f;" BorderPane.alignment="CENTER">
+                     <children>
+                        <Line endX="78.0" layoutX="115.0" layoutY="133.0" startX="-115.0" stroke="#fdd82b" />
+                        <Label layoutX="46.0" layoutY="18.0" prefHeight="19.0" prefWidth="100.0" text="WELCOME," textFill="WHITE">
+                           <font>
+                              <Font name="Berlin Sans FB" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="39.0" layoutY="69.0" prefHeight="22.0" prefWidth="147.0" text="James Bonde" textFill="#fdd82b">
+                           <font>
+                              <Font name="Tahoma Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="housebutton" layoutX="23.0" layoutY="199.0" mnemonicParsing="false" onAction="#SwitchingFormUser" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #fdd82b;" text="Add House" textFill="#02344f">
+                           <font>
+                              <Font name="Tahoma Bold" size="13.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="Consumptionbutton" layoutX="24.0" layoutY="287.0" mnemonicParsing="false" onAction="#SwitchingFormUser" prefHeight="25.0" prefWidth="133.0" style="-fx-background-color: #fdd82b;" text="Consumption" textFill="#02344f">
+                           <font>
+                              <Font name="Tahoma Bold" size="13.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="logoutbutton" layoutX="8.0" layoutY="393.0" mnemonicParsing="false" onAction="#logout" prefHeight="13.0" prefWidth="50.0" style="-fx-background-color: #ffffffff;" text="Logout" textFill="#02344f">
+                           <font>
+                              <Font name="Tahoma Bold" size="10.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="homebutton" layoutX="23.0" layoutY="153.0" mnemonicParsing="false" onAction="#SwitchingFormUser" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #fdd82b;" text="Home" textFill="#02344f">
+                           <font>
+                              <Font name="Tahoma Bold" size="13.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="Productionbutton" layoutX="24.0" layoutY="244.0" mnemonicParsing="false" onAction="#SwitchingFormUser" prefHeight="25.0" prefWidth="133.0" style="-fx-background-color: #fdd82b;" text="Production" textFill="#02344f">
+                           <font>
+                              <Font name="Tahoma Bold" size="13.0" />
+                           </font>
+                        </Button>
+                        <ImageView fitHeight="234.0" fitWidth="242.0" layoutX="-88.0" layoutY="-36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../app_design_files/Images/profile_button.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </left>
+               <center>
+                  <AnchorPane prefHeight="419.0" prefWidth="529.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane fx:id="houseform" layoutX="9.0" layoutY="6.0" prefHeight="407.0" prefWidth="542.0" stylesheets="@admindashboard.css" visible="false">
+                           <styleClass>
+                              <String fx:value="White-bg" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                           <children>
+                              <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="509.0" stylesheets="@admindashboard.css">
+                                 <styleClass>
+                                    <String fx:value="White-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <TableView fx:id="house_tableview" layoutX="6.0" layoutY="3.0" prefHeight="200.0" prefWidth="509.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <columns>
+                                          <TableColumn fx:id="house_col_houseid" prefWidth="75.0" text="HouseID" />
+                                          <TableColumn fx:id="house_col_country" prefWidth="95.0" text="Country" />
+                                          <TableColumn fx:id="house_col_town" prefWidth="99.0" text="Town" />
+                                          <TableColumn fx:id="house_col_address" prefWidth="115.0" text="Address" />
+                                          <TableColumn fx:id="house_col_owner" prefWidth="124.0" text="Owner" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                              <TextField fx:id="houseidtxt" alignment="CENTER" layoutX="14.0" layoutY="243.0" onAction="#UserAddHouse" prefHeight="25.0" prefWidth="177.0" promptText="HouseID" styleClass="shadow" stylesheets="@admindashboard.css">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="countrytxt" alignment="CENTER" layoutX="14.0" layoutY="280.0" onAction="#UserAddHouse" prefHeight="25.0" prefWidth="177.0" promptText="Country" styleClass="shadow" stylesheets="@admindashboard.css">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="towntxt" alignment="CENTER" layoutX="14.0" layoutY="318.0" onAction="#UserAddHouse" prefHeight="25.0" prefWidth="177.0" promptText="Town" styleClass="shadow" stylesheets="@admindashboard.css">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="houseaddresstxt" alignment="CENTER" layoutX="221.0" layoutY="243.0" onAction="#UserAddHouse" prefHeight="25.0" prefWidth="177.0" promptText="Address" styleClass="shadow" stylesheets="@admindashboard.css">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="ownertxt" alignment="CENTER" layoutX="221.0" layoutY="280.0" onAction="#UserAddHouse" prefHeight="25.0" prefWidth="177.0" promptText="Owner" styleClass="shadow" stylesheets="@admindashboard.css">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <Button fx:id="house_addbutton" layoutX="432.0" layoutY="243.0" mnemonicParsing="false" onAction="#UserAddHouse" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Add">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="house_deletebutton" layoutX="432.0" layoutY="318.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Delete">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="house_refreshbutton" layoutX="432.0" layoutY="280.0" mnemonicParsing="false" onAction="#loadHouseData" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Refresh">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="Productionform" layoutX="9.0" layoutY="6.0" prefHeight="407.0" prefWidth="542.0" stylesheets="@admindashboard.css" visible="false">
+                           <styleClass>
+                              <String fx:value="White-bg" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                           <children>
+                              <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="509.0" stylesheets="@admindashboard.css">
+                                 <styleClass>
+                                    <String fx:value="White-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <TableView fx:id="Production_tableview" layoutX="6.0" layoutY="3.0" prefHeight="200.0" prefWidth="509.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <columns>
+                                          <TableColumn fx:id="production_col_houseid" prefWidth="75.0" text="HouseID" />
+                                          <TableColumn fx:id="production_col_date" prefWidth="95.0" text="Date" />
+                                          <TableColumn fx:id="production_col_daily" prefWidth="99.0" text="Daily Prod" />
+                                          <TableColumn fx:id="production_col_weekly" prefWidth="115.0" text="Weekly Prod" />
+                                          <TableColumn fx:id="production_col_total" prefWidth="124.0" text="Total Prod" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                              <TextField fx:id="productionhouseidtxt" alignment="CENTER" layoutX="14.0" layoutY="243.0" prefHeight="25.0" prefWidth="177.0" promptText="UserID" styleClass="shadow" stylesheets="@admindashboard.css">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="productiondatetxt" alignment="CENTER" layoutX="14.0" layoutY="280.0" prefHeight="25.0" prefWidth="177.0" promptText="FirstName" styleClass="shadow" stylesheets="@admindashboard.css">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="productiondailytxt" alignment="CENTER" layoutX="14.0" layoutY="318.0" prefHeight="25.0" prefWidth="177.0" promptText="LastName" styleClass="shadow" stylesheets="@admindashboard.css">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="productionweeklytxt" alignment="CENTER" layoutX="221.0" layoutY="243.0" prefHeight="25.0" prefWidth="177.0" promptText="Address" styleClass="shadow" stylesheets="@admindashboard.css">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <Button fx:id="Production_addbutton" layoutX="432.0" layoutY="243.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Add">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="Production_deletebutton" layoutX="432.0" layoutY="280.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #24a4d7;" text="Delete">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="homeform" layoutX="9.0" layoutY="6.0" prefHeight="407.0" prefWidth="542.0" stylesheets="@admindashboard.css" visible="false">
+                           <children>
+                              <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="152.0" prefWidth="509.0" stylesheets="@admindashboard.css">
+                                 <styleClass>
+                                    <String fx:value="White-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <AnchorPane layoutX="29.0" layoutY="17.0" prefHeight="118.0" prefWidth="200.0" style="-fx-background-color: #24a4d7;" stylesheets="@admindashboard.css">
+                                       <styleClass>
+                                          <String fx:value="White-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="282.0" layoutY="17.0" prefHeight="118.0" prefWidth="200.0" style="-fx-background-color: #24a4d7;" stylesheets="@admindashboard.css">
+                                       <styleClass>
+                                          <String fx:value="White-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                              <BarChart layoutX="19.0" layoutY="182.0" prefHeight="195.0" prefWidth="500.0" title="Home and User">
+                                 <xAxis>
+                                    <CategoryAxis side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis side="LEFT" />
+                                 </yAxis>
+                              </BarChart>
+                           </children>
+                           <styleClass>
+                              <String fx:value="shadow" />
+                              <String fx:value="White-bg" />
+                           </styleClass>
+                        </AnchorPane>
+                        <AnchorPane fx:id="Consumptionform" layoutX="9.0" layoutY="6.0" prefHeight="407.0" prefWidth="542.0" style="-fx-background-color: #fcd829;" stylesheets="@admindashboard.css">
+                           <children>
+                              <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="509.0" stylesheets="@admindashboard.css">
+                                 <styleClass>
+                                    <String fx:value="White-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <TableView fx:id="Consumption_tableview" layoutX="-1.0" prefHeight="200.0" prefWidth="509.0" style="-fx-background-color: #fffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+                                       <columns>
+                                          <TableColumn fx:id="Consumption_col_houseID" prefWidth="75.0" text="HouseID" />
+                                          <TableColumn fx:id="Consumption_col_date" prefWidth="95.0" text="Date" />
+                                          <TableColumn fx:id="Consumption_col_daily" prefWidth="99.0" text="Daily" />
+                                          <TableColumn fx:id="Consumption_col_weekly" prefWidth="115.0" text=" Weekly" />
+                                          <TableColumn fx:id="Consumption_col_total" prefWidth="124.0" text="Consumption Total" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                              <TextField fx:id="consumptionHouseIDtxt" alignment="CENTER" layoutX="58.0" layoutY="243.0" onAction="#UserAddConsumption" prefHeight="25.0" prefWidth="177.0" promptText="HouseID" style="-fx-background-color: #02344f;" stylesheets="@admindashboard.css">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="consumptionDatetxt" alignment="CENTER" layoutX="58.0" layoutY="280.0" onAction="#UserAddConsumption" prefHeight="25.0" prefWidth="177.0" promptText="Date" style="-fx-background-color: #02344f;" stylesheets="@admindashboard.css">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="consumptionDailytxt" alignment="CENTER" layoutX="265.0" layoutY="280.0" onAction="#UserAddConsumption" prefHeight="25.0" prefWidth="177.0" promptText="Daily Usage" style="-fx-background-color: #02344f;" stylesheets="@admindashboard.css">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="consumptionWeeklytxt" alignment="CENTER" layoutX="265.0" layoutY="243.0" onAction="#UserAddConsumption" prefHeight="25.0" prefWidth="177.0" promptText="Weekly Usage" style="-fx-background-color: #02344f;" stylesheets="@admindashboard.css">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <Button fx:id="Consumption_addbutton" layoutX="378.0" layoutY="312.0" mnemonicParsing="false" onAction="#UserAddConsumption" prefHeight="20.0" prefWidth="66.0" style="-fx-background-color: #fffffff;" text="Add" textFill="#02344f">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="Consumption_deletebutton" layoutX="378.0" layoutY="342.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="66.0" style="-fx-background-color: #fffffff;" text="Delete" textFill="#02344f">
+                                 <font>
+                                    <Font name="Tahoma Bold" size="13.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
